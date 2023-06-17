@@ -38,32 +38,3 @@ function translate(s: string) {
   }
   return minCharNumber;
 }
-let queries = [
-    // "aabbabbb",
-    // "abbbabaa",
-    "aabbbabaa",
-    // "aabba",
-    // "abb",
-    // "a",
-    // "ba",
-    // "aa",
-    // "ba",
-    // "baabbbaaaa",
-    // "babaa",
-    // "bbbbabaa",
-  ],
-  words = [
-    "b",
-    "aaaba",
-    "aaaabba",
-    "aa",
-    "aabaabab",
-    "aabbaaabbb",
-    "ababb",
-    "bbb",
-    "aabbbabb",
-    "aab",
-    "bbaaababba",
-    "baaaaa",
-  ];
-console.log(numSmallerByFrequency(queries, words));
