@@ -2,12 +2,13 @@
   "name": "leet-code-answer",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.ts",
-  "scripts": {},
   "keywords": [],
+  "main": "./output/index.ts",
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "rollup": "^3.25.1"
+    "@types/node": "^20.3.1",
+    "rollup": "^3.25.1",
+    "typescript": "^5.0.2"
   }
 }

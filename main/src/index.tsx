@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {} from "leet-code-answer/src/";
+import demo from "leet-code-answer/output/1170";
+console.log(demo);
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <div>ws</div>
+    <div></div>
   </React.StrictMode>
 );
