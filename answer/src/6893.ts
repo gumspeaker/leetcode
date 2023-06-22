@@ -1,5 +1,6 @@
 function specialPerm(nums: number[]): number {
   let res = 0;
+  let used = new Array(nums.length).fill(false);
   function loop(last: number | undefined, thisTime: number[]) {
     if (thisTime.length === 0) {
       res++;
