@@ -24,3 +24,4 @@ function specialPerm(nums: number[]): number {
 const nums = [1, 4, 3];
 
 console.log(specialPerm(nums));
+export {};
