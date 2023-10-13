@@ -775,7 +775,7 @@ class Heap<T> implements Iterable<T> {
     bottomHeap.init();
     const startAt = this.heapArray.length - 1 - n;
     const parentStartAt = Heap.getParentIndexOf(startAt);
-    const indices = [];
+    const indices: number[] = [];
     for (let i = startAt; i > parentStartAt; --i) {
       indices.push(i);
     }
@@ -909,7 +909,7 @@ class Heap<T> implements Iterable<T> {
     topHeap.heapArray = heapArray.slice(0, n);
     topHeap.init();
     const branch = Heap.getParentIndexOf(n - 1) + 1;
-    const indices = [];
+    const indices: number[] = [];
     for (let i = branch; i < n; ++i) {
       indices.push(
         ...Heap.getChildrenIndexOf(i).filter((l) => l < heapArray.length)
