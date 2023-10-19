@@ -10,8 +10,10 @@ function tupleSameProduct(nums: number[]): number {
   }
   console.log(map);
 
-  return Object.values(map).reduce((sum, same_value_number) => {
-    return sum + (same_value_number * (same_value_number - 1)) / 2;
-  }, 0);
+  return (
+    Object.values(map).reduce((sum, same_value_number) => {
+      return sum + (same_value_number * (same_value_number - 1)) / 2;
+    }, 0) * 8
+  );
 }
 tupleSameProduct([2, 3, 4, 6]);
