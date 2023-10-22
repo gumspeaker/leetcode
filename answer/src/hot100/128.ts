@@ -1,68 +1,53 @@
-export default class UnionFindSets {
-  // 用于记录该节点的父节点，所有父节点相同的节点位于同一连通图
-  public parent: Array<number> = [];
+function longestConsecutive(nums: number[]): number {
+  if (!nums.length) return 0;
+  let set = new Set<number>();
+  let min = Number.MAX_SAFE_INTEGER;
+  let max = Number.MIN_SAFE_INTEGER;
+  let uf = new UnionFind();
 
-  // 节点的秩，主要记录该节点目前位于的树的深度，从子节点出发
-  // 主要用于优化，在合并两个父节点时，通过rank的大小判断谁父谁子
-  public rank: Array<number> = [];
-
-  // 用于记录并查集的数量,某些情况下该成员非必要
-  public count: number;
-
-  constructor(n: number) {
-    this.count = n;
-    for (let i = 0; i < n; i++) {
-      this.parent.push(i);
-      this.rank.push(0);
+  nums.forEach((n) => {
+    set.add(n);
+    uf.size[n] = 1;
+    uf.parent[n] = n;
+    min = Math.min(min, n);
+    max = Math.max(max, n);
+  });
+  for (const key of set.values()) {
+    if (set.has(key + 1)) {
+      uf.union(key, key + 1);
+    }
+    if (set.has(key - 1)) {
+      uf.union(key, key - 1);
     }
   }
-
-  // 路径压缩， 遍历过程中的所有父节点直接指向根节点，
-  // 减少后续查找次数
-  public find(x: number) {
-    if (this.parent[x] != x) {
-      this.parent[x] = this.find(this.parent[x]);
-    }
-    return this.parent[x];
+  let res = 0;
+  for (const v of set) {
+    res = Math.max(res, uf.size[v]);
   }
+  // console.log(res);
 
-  // 合并两个节点
-  // 如果处于同一个并查集， 不需要合并
-  // 如果不处于同一个并查集，判断两个rootx和rooty谁的秩大
-  public merge(x: number, y: number) {
-    let xp = this.find(x);
-    let yp = this.find(y);
-    if (xp !== yp) {
-      if (this.rank[xp] < this.rank[yp]) {
-        [xp, yp] = [yp, xp];
-      }
-      this.parent[yp] = xp;
-      this.count--;
-      if (this.rank[xp] === this.rank[yp]) {
-        this.rank[xp] += 1;
-      }
-    }
-  }
+  return res;
 }
 class UnionFind {
   //用来解决不同节点间是否拥有相同根的问题
   parent: number[];
   size: number[];
   count: number;
-  constructor(n: number) {
+  constructor() {
     this.parent = []; //并查集
     this.size = []; //每个节点下拥有的总节点数目
     this.count = 0;
-    this.init(n);
+    // this.init(min, max);
   }
   //初始化一个并查集
-  init(n: number) {
+  init(min: number, max: number) {
     this.parent.length = 0;
-    for (let i = 0; i < n; i++) {
+    this.size = new Array(max - min).fill(1);
+    for (let i = min; i <= max; i++) {
       this.parent[i] = i;
+      this.size[i] = 1;
     }
-    this.count = n;
-    this.size = new Array(n).fill(1);
+    this.count = max - min;
   }
   // 在并查集中找到节点node的根节点
   find(node: number) {
@@ -101,3 +86,4 @@ class UnionFind {
     return this.count;
   }
 }
+longestConsecutive([0, 1, 2, 4, 8, 5, 6, 7, 9, 3, 55, 88, 77, 99, 999999999]);
