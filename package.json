@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/gumspeaker/leetcode/issues"
   },
-  "homepage": "https://github.com/gumspeaker/leetcode#readme"
+  "homepage": "https://github.com/gumspeaker/leetcode#readme",
+  "dependencies": {
+    "p-limit": "^4.0.0"
+  }
 }
