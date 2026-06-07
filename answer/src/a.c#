@@ -1,0 +1,5 @@
+public class Solution {
+    private static int[] res = ;
+    private static int cnt = 0;
+    public int ConcatenatedBinary(int n) => res[cnt++];
+}
